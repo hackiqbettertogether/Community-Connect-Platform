@@ -49,27 +49,29 @@ import {MatBadgeModule} from '@angular/material/badge';
 import { CopyContentModalComponent } from './pages/home/copy-content-modal/copy-content-modal.component';
 
 import {ScrollingModule} from '@angular/cdk/scrolling';
+import {LeaderboardComponent} from "./pages/home/leaderboard/leaderboard.component";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    SignupComponent,
-    HomeComponent,
-    PageNotFoundComponent,
-    ConnectionsComponent,
-    FeedHeaderComponent,
-    NotificationComponent,
-    ProfileComponent,
-    FeedItemComponent,
-    AddCommentComponent,
-    AddQuoteComponent,
-    FeedItemMinimizedComponent,
-    FeedDetailComponent,
-    CommentDetailComponent,
-    CreateUserComponent,
-    CopyContentModalComponent,
-  ],
+    declarations: [
+        AppComponent,
+        LoginComponent,
+        SignupComponent,
+        HomeComponent,
+        PageNotFoundComponent,
+        ConnectionsComponent,
+        FeedHeaderComponent,
+        NotificationComponent,
+        ProfileComponent,
+        FeedItemComponent,
+        AddCommentComponent,
+        AddQuoteComponent,
+        FeedItemMinimizedComponent,
+        FeedDetailComponent,
+        CommentDetailComponent,
+        CreateUserComponent,
+        CopyContentModalComponent,
+        LeaderboardComponent,
+    ],
     imports: [
         BrowserModule,
         HttpClientModule,

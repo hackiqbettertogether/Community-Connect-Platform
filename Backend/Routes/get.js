@@ -69,6 +69,47 @@ router.get("/notifications", async (req, res) => {
     };
 });
 
+
+
+router.get("/leaderboard", async (req, res) => {
+  let entireFeeds = await Feeds.find({"post_type": {$ne: "reply"}}, null, {sort: {"created_at": "descending"}})
+      .populate({
+        path: "parent_id",
+        populate: {
+          path: "user_id",
+          model: "User",
+        }
+      })
+      .populate('conversation_visibility_id')
+      .populate("user_id", '_id profile_pic user_handle');
+  const createLeaderBoard = (list, keyGetter) => {
+    const map = {};
+    list.forEach((item) => {
+      const key = String(keyGetter(item));
+      let collection = map[key];
+      if (!collection) {
+        map[key] = {id: item.user_id._id, author: item.user_id.user_handle, score: 10};
+      } else {
+        collection.items += 1;
+        collection.score += 10;
+      }
+      // score logic
+      let score = map[key].score;
+      if (item.post_type === 'post') {
+        score += (item.like_count*3);
+        score += (item.repost_count*5);
+      }
+      if (item.post_type === 'repost' || item.post_type === 'quote') {
+        score -= 5;
+      }
+      map[key].score = score;
+    });
+    return map;
+  }
+  let leaderBoardMap = Object.values(createLeaderBoard(entireFeeds, feed => feed.user_id._id));
+  res.status(200).send(leaderBoardMap);
+});
+
 router.get("/profile", async (req, res) => {
   let userId = req.headers.id;
   if (userId != null) {
@@ -112,7 +153,7 @@ router.get("/feeds", async (req, res) => {
     if (user) {
       let group = user.group_names;
       var entireFeeds = await Feeds.find({"post_type": { $ne: "reply" }}, null, { sort: { "created_at" : "descending" }})
-      .populate({ 
+      .populate({
               path: "parent_id",
               populate: {
                   path: "user_id",
@@ -190,7 +231,7 @@ router.get("/user/:user_handle", async (req, res) => {
           "user_id": { $eq: user._id },
           "post_type": { $ne: "reply" },
         }, filters, { sort: { "created_at" : "descending" }})
-        .populate({ 
+        .populate({
               path: "parent_id",
               populate: {
                   path: "user_id",
@@ -243,14 +284,14 @@ router.get("/feeds/:feed_id", async (req, res) => {
       var entireFeeds = await Feeds.findOne({
         "_id": feed_id,
       }, null, { sort: { "created_at" : "ascending" }})
-      .populate({ 
+      .populate({
               path: "parent_id",
               populate: {
                   path: "user_id",
                   model: User,
                   select: '_id profile_pic user_handle'
               }})
-      .populate({ 
+      .populate({
               path: "parent_id",
               populate: {
                 path: "replies",
@@ -261,14 +302,14 @@ router.get("/feeds/:feed_id", async (req, res) => {
                 },
                 model: Feeds
               }})
-      .populate({ 
+      .populate({
               path: "parent_id.replies",
               populate: {
                   path: "user_id",
                   model: User,
                   select: '_id profile_pic user_handle'
               }})
-      .populate({ 
+      .populate({
               path: "replies",
               populate: {
                   path: "user_id",
@@ -325,7 +366,7 @@ router.get("/feeds/:feed_id", async (req, res) => {
             });
           });
         }
-        
+
         modifiedFeeds = {
           _id: entireFeeds._id,
           author: entireFeeds.user_id,
