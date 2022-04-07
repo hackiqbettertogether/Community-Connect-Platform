@@ -19,6 +19,10 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
+const fileUpload = multer();
+const cloudinary = require('cloudinary').v2
+const streamifier = require('streamifier')
+
 const upload = multer({
   fileFilter: fileFilter,
     storage: multerS3({

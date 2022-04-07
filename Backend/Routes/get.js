@@ -94,6 +94,16 @@ router.get("/profile", async (req, res) => {
     }
   }
 });
+var fs = require("fs");
+
+router.get("/images/:id", async (req, res) => {
+  var id = req.params['id']
+  fs.readFile(__dirname + "/uploads/" + id, function(err, data) {
+    if (err) throw err; // Fail if the file can't be read.
+      res.writeHead(200, {'Content-Type': 'image/jpeg'});
+      res.end(data); // Send the file data to the browser.
+  });
+});
 
 router.get("/feeds", async (req, res) => {
   let userId = req.headers.id;
