@@ -46,7 +46,7 @@ def sentiment_analyser(comment):
         total = 0
     return total
 
-api.add_resource(SentimentScore,"/sentiment-analysis/sentiment-score")
+api.add_resource(SentimentScore,"/sentiment-score")
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0',port=5001)
