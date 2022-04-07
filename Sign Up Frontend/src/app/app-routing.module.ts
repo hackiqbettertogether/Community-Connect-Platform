@@ -7,7 +7,7 @@ import { CreateUserComponent } from './pages/create-user/create-user.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/signup-p1', pathMatch: 'full' },
+  { path: '', redirectTo: '/signup-complete', pathMatch: 'full' },
   { path: 'signup-p1', component: SignupComponent },
   { path: 'signup-complete', component: CreateUserComponent },
   { path: '**', component: PageNotFoundComponent }

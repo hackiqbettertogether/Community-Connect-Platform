@@ -14,6 +14,9 @@ export class CreateUserComponent implements OnInit {
 
   signUpData: UserSignupInfo = null;
   imageSrc: string;
+  name: string;
+  username: string;
+  email: string;
   password = '';
   cPassword = '';
 
@@ -26,34 +29,34 @@ export class CreateUserComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.signUpData = this.authService.currentUserSignUpInfo;
-    if (this.signUpData == null) {
-      const code = localStorage.getItem('user_id');
-      if (code) {
-        this.authService.signup(code).subscribe(response => {
-          if (response == null) {
-            this.openSnackBar('Some Error Occured.');
-          } else {
-            this.signUpData = response;
-            this.signUpData.email = this.signUpData.EmailID + '';
-            this.authService.setSignUpInfo(this.signUpData);
-          }
-        }, error => {
-          this.openSnackBar(error.error.status);
-        });
-      } else {
-        this.openSnackBar('No SignUp User Info Detected. Please try again.');
-        // this.router.navigate(['/login']);
-        this.goToUrl();
-      }
-    }
+    // this.signUpData = this.authService.currentUserSignUpInfo;
+    // if (this.signUpData == null) {
+    //   const code = localStorage.getItem('user_id');
+    //   if (code) {
+    //     this.authService.signup(code).subscribe(response => {
+    //       if (response == null) {
+    //         this.openSnackBar('Some Error Occured.');
+    //       } else {
+    //         this.signUpData = response;
+    //         this.signUpData.email = this.signUpData.EmailID + '';
+    //         this.authService.setSignUpInfo(this.signUpData);
+    //       }
+    //     }, error => {
+    //       this.openSnackBar(error.error.status);
+    //     });
+    //   } else {
+    //     this.openSnackBar('No SignUp User Info Detected. Please try again.');
+    //     // this.router.navigate(['/login']);
+    //     this.goToUrl();
+    //   }
+    // }
 
-    this.imageSrc = localStorage.getItem('avatar');
-    if (this.imageSrc == null) {
-      this.openSnackBar('No Avatar Detected. Please try again.');
-      // this.router.navigate(['/login']);
-      this.goToUrl();
-    }
+    // this.imageSrc = localStorage.getItem('avatar');
+    // if (this.imageSrc == null) {
+    //   this.openSnackBar('No Avatar Detected. Please try again.');
+    //   // this.router.navigate(['/login']);
+    //   this.goToUrl();
+    // }
   }
 
   openSnackBar(message: string) {
@@ -71,17 +74,15 @@ export class CreateUserComponent implements OnInit {
   signUpUser() {
 
     const body = {
-      image_src: this.imageSrc,
-      name: this.signUpData.name,
-      email: this.signUpData.EmailID,
-      username: this.signUpData.username,
-      bio: this.signUpData.bio,
+      name: this.name,
+      email: this.email,
+      username: this.username,
       password: this.password,
       password_conf: this.cPassword,
     };
     this.authService.createUser(body).subscribe(response => {
       this.openSnackBar(response.status);
-      this.router.navigate(['/login']);
+      this.goToUrl();
     }, error => {
       this.openSnackBar(error.error.status);
     });

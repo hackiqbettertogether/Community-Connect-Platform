@@ -37,7 +37,7 @@ export class AuthService {
   }
 
   createUser(body: any): Observable<any> {
-    return this.http.post<any>('http://' + this.link + '/create-user', body);
+    return this.http.post<any>('http://' + this.link + '/post/create-user', body);
   }
 
   setUser(user: UserProfile) {

@@ -36,9 +36,6 @@ router.post("/login", async (req, res) => {
     if (!user) {
       res.status(403).send({ status: "Could not find user matching entered email" });
     } else {
-        if (!user.profile_pic) {
-          res.status(401).send({status: "Please create your credentials first"});
-        } else {
         const validPass = await bcrypt.compare(req.body.password, user.password);
         if (!validPass) {
           res.status(401).send({ status: "Wrong password entered" });
@@ -67,7 +64,6 @@ router.post("/login", async (req, res) => {
           // Save it to DB
           log.save();
         }
-      }
     }
   }
 });
@@ -295,26 +291,23 @@ router.post("/create-user", async (req, res) => {
   if (error) {
     res.status(400).send({ status: "Did not receive all required user info" });
   } else {
-    const { image_src, name, email_id, user_handle, bio, password, password_conf } = req.body;
-    const user = await User.findOne({
-      email_id: email_id,
-      user_handle: user_handle,
-    });
-    if (!user) {
-      res.status(404).send({ status: "User not found" });
-    } else {
-      let salt = await bcrypt.genSalt(10);
-      // generate new hashed password
-      const hashPassword = await bcrypt.hash(password, salt);
-      user.bio = bio;
-      if (image_src != "no-update") {
-        user.profile_pic = image_src;
-      }
-      user.password = hashPassword;
-      user.isAdmin = false;
-      user.save();
-      res.status(201).send({status: "New user credentials created!"});
+    const { image_src, name, email, username, bio, password, password_conf } = req.body;
+    var user = new User();
+    user.name = name;
+    user.group_names = ["miq"];
+    user.user_handle = username;
+    user.email_id = email;
+    let salt = await bcrypt.genSalt(10);
+    // generate new hashed password
+    const hashPassword = await bcrypt.hash(password, salt);
+    user.bio = bio;
+    if (image_src != "no-update") {
+      user.profile_pic = image_src;
     }
+    user.password = hashPassword;
+    user.isAdmin = false;
+    user.save();
+    res.status(201).send({status: "New user credentials created!"});
   }
 });
 

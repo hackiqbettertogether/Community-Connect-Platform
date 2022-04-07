@@ -2,7 +2,7 @@ const express = require("express");
 const helmet = require("helmet");
 const dotenv = require('dotenv');
 dotenv.config();
-require('dotenv').config({ path: 'final-env-file.env' });
+require('dotenv').config({ path: 'final.env' });
 
 const _ = require("lodash");
 const bodyParser = require("body-parser");

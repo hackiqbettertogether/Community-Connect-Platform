@@ -12,13 +12,10 @@ const firstLoginValidation = (data) => {
 // Registration
 const registerValidation = (data) => {
 	const schema = Joi.object({
-		image_src: Joi.string().required(),
 		name: Joi.string().required(),
-		email_id: Joi.string().required().email(),
-		user_handle: Joi.string().min(3).required(),
-		location: Joi.string(),
-		bio: Joi.string().required(),
-		password: Joi.string().min(6).required(),
+		email: Joi.string().required().email(),
+		username: Joi.string().required(),
+		password: Joi.string().required(),
 		password_conf: Joi.string().required(),
 	});
 	return schema.validate(data);

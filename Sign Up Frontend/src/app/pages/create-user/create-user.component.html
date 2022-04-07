@@ -1,30 +1,21 @@
 <div class="login-page">
 
-<mat-card *ngIf="signUpData" class="create-user-card">
-
-    <div class="flex-it image">
-        <img *ngIf="imageSrc" [src]="imageSrc" alt="Image Source" class="icon-image">
-    </div>
+<mat-card class="create-user-card">
 
     <div class="flex-it">
         <mat-form-field class="card-item">
             <mat-label>Name</mat-label>
-            <input matInput disabled value="{{signUpData? signUpData.name : 'Error'}}">
+            <input matInput [(ngModel)]="name">
         </mat-form-field>
         <mat-form-field class="card-item">
             <mat-label>Username</mat-label>
-            <input matInput disabled value="{{signUpData? signUpData.username : 'Error'}}">
+            <input matInput [(ngModel)]="username">
         </mat-form-field>
     </div>
 
     <mat-form-field class="card-item">
         <mat-label>Email Id</mat-label>
-        <input matInput disabled value="{{signUpData? signUpData.EmailID : 'Error'}}">
-    </mat-form-field>
-
-    <mat-form-field class="card-item">
-        <mat-label>Bio</mat-label>
-        <input matInput disabled value="{{signUpData? signUpData.bio : 'Error'}}">
+        <input matInput [(ngModel)]="email">
     </mat-form-field>
 
     <mat-form-field class="card-item">
