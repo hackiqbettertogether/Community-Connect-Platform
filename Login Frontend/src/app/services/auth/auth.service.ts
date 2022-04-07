@@ -41,22 +41,22 @@ export class AuthService {
     const body = {
       email_id, password, timezone: 'EST'
     };
-    return this.http.post<any>('http://' + this.link + '/post/login', body);
+    return this.http.post<any>(this.link + '/post/login', body);
   }
 
   // tslint:disable-next-line:variable-name
   signup(user_code: string): Observable<UserSignupInfo> {
     const headers = { user_code };
-    return this.http.get<any>('http://' + this.link + '/get/signup', { headers });
+    return this.http.get<any>(this.link + '/get/signup', { headers });
   }
 
   createUser(body: any): Observable<any> {
-    return this.http.post<any>('http://' + this.link + '/post/create-user', body);
+    return this.http.post<any>(this.link + '/post/create-user', body);
   }
 
   changePassword(body: any, userId: string): Observable<any> {
      const headers = { userId };
-     return this.http.put<any>('http://' + this.link + '/put/change-password', body, { headers });
+     return this.http.put<any>(this.link + '/put/change-password', body, { headers });
   }
 
   setUser(user: UserProfile) {
