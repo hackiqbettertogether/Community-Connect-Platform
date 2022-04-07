@@ -14,6 +14,19 @@ const upload = require('./../middleware/file-uploads');
 const aws = require('aws-sdk');
 const multer = require('multer');
 const multerS3 = require('multer-s3');
+const fileUpload = multer();
+const cloudinary = require('cloudinary').v2
+const streamifier = require('streamifier')
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname)
+  }
+})
+var uploadNew = multer({ storage: storage })
 
 aws.config.update({
 secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
@@ -92,6 +105,7 @@ router.post("/logout", async (req, res) => {
 
 router.post("/feed", async (req, res) => {
   const user = await User.findById(req.body.userId);
+
   if (!user.isAdmin) {
 
     let user_mentions = [];
@@ -126,7 +140,7 @@ router.post("/feed", async (req, res) => {
       mentions: user_mentions,
       image: req.body.image ? req.body.image : null,
     };
-
+    
     const newFeed = new Feeds(feed);
     try {
       // Save to DB, set conversation_id based on _id, then resave feed
@@ -311,11 +325,37 @@ router.post("/create-user", async (req, res) => {
   }
 });
 
-/* Where image is the name of the property sent from angular via the Form Data and the 1 is the max number of files to upload*/
-router.post('/v1/upload', upload.array('image', 1), (req, res) => {
-  /* This will be th 8e response sent from the backend to the frontend */
-  res.send({ image: req.files[0].location });
- });
+const handleError = (err, res) => {
+  res
+    .status(500)
+    .contentType("text/plain")
+    .end("Oops! Something went wrong!");
+};
+
+var upload2 = multer({ dest: '/tmp/'});
+var fs = require("fs");
+// File input field name is simply 'file'
+router.post('/v1/upload', upload2.single('image'), function(req, res) {
+  var file = __dirname + '/uploads/' + req.file.filename;
+  fs.rename(req.file.path, file, function(err) {
+    if (err) {
+      console.log(err);
+      res.send(500);
+    } else {
+      res.json({
+        message: 'File uploaded successfully',
+        filename: req.file.filename
+      });
+    }
+  });
+});
+
+// /* Where image is the name of the property sent from angular via the Form Data and the 1 is the max number of files to upload*/
+// router.post('/v1/upload', upload.array('image', 1), (req, res) => {
+//   /* This will be th 8e response sent from the backend to the frontend */
+//   res.send({ image: req.files[0].location });
+//  });
+
 
  /* Where image is the name of the property sent from angular via the Form Data and the 1 is the max number of files to upload*/
 router.post('/v1/upload/profile', async (req, res) => {
