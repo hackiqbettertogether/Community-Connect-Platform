@@ -68,7 +68,7 @@ export class CreateUserComponent implements OnInit {
   }
 
   goToUrl(): void {
-    this.document.location.href = 'http://localhost:4200/login';
+    this.document.location.href = '/login';
   }
 
   signUpUser() {
