@@ -50,6 +50,7 @@ import { CopyContentModalComponent } from './pages/home/copy-content-modal/copy-
 
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {LeaderboardComponent} from "./pages/home/leaderboard/leaderboard.component";
+import {LearningComponent} from "./pages/learning/learning.component";
 
 @NgModule({
     declarations: [
@@ -71,6 +72,7 @@ import {LeaderboardComponent} from "./pages/home/leaderboard/leaderboard.compone
         CreateUserComponent,
         CopyContentModalComponent,
         LeaderboardComponent,
+        LearningComponent
     ],
     imports: [
         BrowserModule,

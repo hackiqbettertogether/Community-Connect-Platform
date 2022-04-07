@@ -1,0 +1,138 @@
+.learn-page {
+  width: 100vw;
+  .header {
+    height: 120px;
+    width: 100vw;
+    background-color: #f8f3f2;
+    padding-left: 24px;
+    font-weight: 900;
+    color: #2B0130;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      width: 130px;
+    }
+  }
+
+  .banner {
+    width: 100%;
+    height: 375px;
+    background-image: url("../../../assets/duotone-header.jpg");
+    background-position-y: -175px;
+    background-size: 1673px;
+    background-position-x: -175px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .banner-overlay {
+      background-color: rgba(0, 0, 0, 0.58);
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .banner-text {
+        background: #2800454f;
+        backdrop-filter: blur(6px);
+        border-radius: 10px;
+        color: white;
+        width: 55%;
+        padding: 13px 25px;
+        line-height: 25px;
+      }
+    }
+  }
+
+  .body {
+    background-color: #f8f3f2;
+    display: flex;
+    padding: 0 100px;
+
+    .left {
+      flex: 5;
+
+      .slim-card {
+        background-color: white;
+        padding: 10px 20px;
+        border-radius: 24px;
+        margin-top: 24px;
+        width: 85%;
+
+        .icon {
+          color: #2B0130;
+          font-size: 17px;
+        }
+
+        div:first-child {
+          font-size: 1.5em;
+          font-weight: 400;
+        }
+      }
+
+      .big-card {
+        background-color: white;
+        display: flex;
+        padding: 10px 20px;
+        border-radius: 24px;
+        margin-top: 24px;
+        width: 85%;
+        div {
+          div:first-child {
+            font-size: 1.5em;
+            font-weight: 400;
+          }
+        }
+      }
+
+      .card-group {
+        display: flex;
+        width: 89%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-bottom: 24px;
+
+        .small-card {
+          width: 400px;
+          margin-top: 24px;
+          height: 250px;
+          background-color: white;
+          display: flex;
+          padding: 10px 20px;
+          border-radius: 24px;
+
+          img {
+            height: 150px;
+            margin-right: 12px;
+          }
+
+          div {
+            div:first-child {
+              font-size: 1.5em;
+              font-weight: 400;
+            }
+          }
+        }
+      }
+    }
+    .right {
+      flex: 1;
+
+      button {
+        background-color: #2B0130;
+        color: white;
+        border: 0;
+        padding: 8px;
+        margin: 5px;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+}

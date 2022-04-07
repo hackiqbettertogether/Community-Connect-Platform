@@ -6,10 +6,11 @@ import { HomeComponent } from './pages/home/home.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import {CreateUserComponent} from './pages/create-user/create-user.component';
+import {LearningComponent} from "./pages/learning/learning.component";
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', component: LearningComponent },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup-p1', component: SignupComponent },
