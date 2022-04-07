@@ -7,4 +7,5 @@ Backend/final-env-file.env
 .idea/
 .idea/*
 *.env
+hackenv/
 Backend/Routes/uploads/*
