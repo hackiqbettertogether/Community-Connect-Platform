@@ -15,7 +15,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  localLink = 'localhost/backend/api';
+  localLink = '/backend/api';
   awsLink = 'www.communityconnect.cc:3000/api';
   link = this.localLink;
   currentUser: UserProfile = null;
