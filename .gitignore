@@ -8,3 +8,4 @@ Backend/final-env-file.env
 .idea/*
 *.env
 hackenv/
+Backend/Routes/uploads/*

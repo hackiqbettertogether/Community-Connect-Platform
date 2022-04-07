@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url("../../../assets/background.jpg");
+  background-image: linear-gradient(to bottom, rgba(51,6,61,0.5), rgba(239,93,3,0.5)), url("../../../assets/background2.jpeg");
   height: 100%;
 }
 
@@ -20,6 +20,7 @@ mat-card {
   padding: 2em;
   margin: 2em auto 10em;
   text-align: center;
+  background: #a1869b70;
 }
 
 mat-form-field {

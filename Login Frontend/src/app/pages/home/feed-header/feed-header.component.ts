@@ -92,7 +92,8 @@ export class FeedHeaderComponent implements OnInit {
     const imageForm = new FormData();
     imageForm.append('image', this.imageObj);
     this.userService.imageUpload(imageForm).subscribe(res => {
-      this.imageUrl = res.image;
+      console.log(res);
+      this.imageUrl = "backend/api/get/images/" + res.filename;
     }, error => {
       this.openSnackBar('Could not upload Image Properly. Please try again');
       this.imageUrl = '';

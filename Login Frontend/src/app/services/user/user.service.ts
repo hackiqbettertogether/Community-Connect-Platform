@@ -5,6 +5,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Feed } from 'src/app/model/Feed';
 import {Notif} from '../../model/Notif';
 import {UserMinified} from '../../model/UserMinified';
+import {Leaderboard} from "../../model/Leaderboard";
 
 @Injectable({
   providedIn: 'root'
@@ -67,6 +68,11 @@ export class UserService {
   getNotifications(userId: string): Observable<Array<Notif>> {
     const headers = { userId };
     return this.http.get<any>(this.link + '/get/notifications', { headers });
+  }
+
+  getLeaderboard(userId: string): Observable<Array<Leaderboard>> {
+    const headers = { userId };
+    return this.http.get<any>(this.link + '/get/leaderboard', { headers });
   }
 
   markNotificationAsRead(userId: string, notifId: string): Observable<Array<Notif>> {

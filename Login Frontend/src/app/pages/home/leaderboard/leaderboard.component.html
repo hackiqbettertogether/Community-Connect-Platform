@@ -1,0 +1,21 @@
+<div class="notifications">
+    <div class="flex-it">
+        <mat-card-header>
+            <mat-card-title style="font-size: x-large">Leaderboard</mat-card-title>
+        </mat-card-header>
+    </div>
+
+    <mat-card class="example-card" style="display: flex; flex: 1">
+        <div>Rank</div>
+        <div>Name</div>
+        <div>Score</div>
+    </mat-card>
+
+    <mat-card *ngFor="let item of leaderBoard; let i = index"
+              class="example-card" style="display: flex; flex: 1"
+    >
+        <div>{{i+1}}</div>
+        <div>{{item.author}}</div>
+        <div>{{item.score}}</div>
+    </mat-card>
+</div>
