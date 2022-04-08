@@ -6,7 +6,7 @@ import re
 from nltk.sentiment import SentimentIntensityAnalyzer
 from warnings import filterwarnings
 import pandas as pd
-dataFrame = pd.read_excel("gender_inclusive.xlsx")
+dataFrame = pd.read_excel("gender_inclusive.xlsx",engine='openpyxl')
 dataFrame['less_inclusive'] = dataFrame['less_inclusive'].apply(lambda x:x.lower())
 dataFrame['more_inclusive'] = dataFrame['more_inclusive'].apply(lambda x:x.lower())
 dataFrame['purpose'] = dataFrame['purpose'].apply(lambda x:x.lower())
