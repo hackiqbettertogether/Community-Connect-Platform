@@ -26,7 +26,7 @@ export class LeaderboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.getLeaderboard(this.authService.currentUser.id).subscribe(response => {
-      this.leaderBoard = response;
+      this.leaderBoard = response.sort(function(a,b){return a.score-b.score}).reverse();
       console.log(this.leaderBoard);
     }, error => {
       this.openSnackBar(error.error.status);
