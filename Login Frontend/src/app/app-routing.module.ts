@@ -10,11 +10,12 @@ import {LearningComponent} from "./pages/learning/learning.component";
 
 
 const routes: Routes = [
-  { path: '', component: LearningComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup-p1', component: SignupComponent },
   { path: 'signup-complete', component: CreateUserComponent },
+  { path: 'connect', component: LearningComponent},
   { path: '**', component: PageNotFoundComponent }
 ];
 
