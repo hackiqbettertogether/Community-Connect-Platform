@@ -6,6 +6,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import {CreateUserComponent} from './pages/create-user/create-user.component';
+import {LearningComponent} from "./pages/learning/learning.component";
 
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup-p1', component: SignupComponent },
   { path: 'signup-complete', component: CreateUserComponent },
+  { path: 'connect', component: LearningComponent},
   { path: '**', component: PageNotFoundComponent }
 ];
 

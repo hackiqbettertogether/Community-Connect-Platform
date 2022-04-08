@@ -28,8 +28,8 @@ export class HomeComponent implements OnInit {
 
     @ViewChild(ConnectionsComponent) conn: ConnectionsComponent;
     isSelectedItem = 0;
-    sidebarIconList = ['home', 'face', 'notifications_none', 'star', 'login'];
-    sidebarList = ['Home', 'Profile', 'Notifications', 'Leaderboard', 'Logout'];
+    sidebarIconList = ['home', 'face', 'notifications_none', 'star', 'favorite_border', 'login'];
+    sidebarList = ['Feed', 'Profile', 'Notifications', 'Leaderboard', 'BeyondIQ', 'Logout'];
     connectionList: Array<UserMinified> = [];
     feedList: Array<Feed> = [];
     isLoading = true;
@@ -79,6 +79,9 @@ export class HomeComponent implements OnInit {
             case 3:
                 break;
             case 4:
+                this.router.navigate(['/connect']);
+                break;
+            case 5:
                 this.authService.setUser(null);
                 sessionStorage.removeItem('user');
                 this.router.navigate(['/login']);
