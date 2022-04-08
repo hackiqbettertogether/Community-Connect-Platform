@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,Inject,OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {UserSignupInfo} from '../../model/UserSignupInfo';
+import {DOCUMENT} from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -29,7 +30,8 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private _snackBar: MatSnackBar,
-    private authService: AuthService
+    private authService: AuthService,
+    @Inject(DOCUMENT) private document: Document
   ) {
 
   }
@@ -121,6 +123,12 @@ export class LoginComponent implements OnInit {
       horizontalPosition: 'center',
       verticalPosition: 'top',
     });
+  }
+  goToUrl(): void {
+    this.document.location.href = '/signup';
+  }
+  signUp(){
+    this.goToUrl();
   }
 
 }

@@ -87,4 +87,7 @@ export class CreateUserComponent implements OnInit {
       this.openSnackBar(error.error.status);
     });
   }
+  signIn(){
+    this.goToUrl();
+  }
 }

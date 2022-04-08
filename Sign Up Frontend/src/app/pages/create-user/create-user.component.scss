@@ -7,8 +7,19 @@
   max-width: 800px;
 }
 
+.create-new-user-card {
+  padding: 30px;
+  background-color: rgb(47, 13, 48);
+  margin-top: -36%;
+  position: absolute;
+  display: block;
+  justify-content: space-around;
+  min-width: 600px;
+  max-width: 800px;
+}
 .card-item {
   width: 100%;
+  display: block;
 }
 
 .flex-it {
@@ -31,7 +42,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url("../../../assets/background.jpg");
+  background-image: url("../../../assets/background.jpeg");
   height: 100%;
 }
 
