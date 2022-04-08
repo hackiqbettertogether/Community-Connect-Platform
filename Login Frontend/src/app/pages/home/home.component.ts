@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
     @ViewChild(ConnectionsComponent) conn: ConnectionsComponent;
     isSelectedItem = 0;
     sidebarIconList = ['home', 'face', 'notifications_none', 'star', 'favorite_border', 'login'];
-    sidebarList = ['Feed', 'Profile', 'Notifications', 'Leaderboard', 'Community', 'Logout'];
+    sidebarList = ['Feed', 'Profile', 'Notifications', 'Leaderboard', 'BeyondIQ', 'Logout'];
     connectionList: Array<UserMinified> = [];
     feedList: Array<Feed> = [];
     isLoading = true;

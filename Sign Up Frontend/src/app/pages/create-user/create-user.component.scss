@@ -10,8 +10,6 @@
 .create-new-user-card {
   padding: 30px;
   background-color: rgb(47, 13, 48);
-  margin-top: -36%;
-  position: absolute;
   display: block;
   justify-content: space-around;
   min-width: 600px;
@@ -40,8 +38,10 @@
 
 .login-page {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
+  padding-top: 5vh;
   background-image: url("../../../assets/background.jpeg");
   height: 100%;
 }

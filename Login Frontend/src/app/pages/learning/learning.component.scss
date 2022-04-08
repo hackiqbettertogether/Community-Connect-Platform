@@ -19,10 +19,10 @@
   .banner {
     width: 100%;
     height: 375px;
-    background-image: url("../../../assets/duotone-header.jpg");
-    background-position-y: -175px;
-    background-size: 1673px;
-    background-position-x: -175px;
+    background-image: url("../../../assets/Image.jpg");
+    background-position-y: -148px;
+    background-size: 1611px;
+    background-position-x: -84px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -71,6 +71,16 @@
           font-size: 1.5em;
           font-weight: 400;
         }
+      }
+
+      .banner-card {
+        background-color: #2B0130;
+        color: #FFFFFF;
+        border-radius: 5px 50px 5px 5px;
+        padding: 30px 15px 10px 15px;
+        font-size: 32px;
+        margin-top: 24px;
+        width: 85%;
       }
 
       .big-card {
