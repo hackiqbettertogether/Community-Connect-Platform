@@ -125,9 +125,6 @@ router.get("/leaderboard", async (req, res) => {
     });
     return map;
   }
-
-  console.debug("Hiiii");
-  console.debug(entireFeeds);
   let leaderBoardMap = Object.values(createLeaderBoard(entireFeeds, feed => feed.user_id._id));
   res.status(200).send(leaderBoardMap);
 });
