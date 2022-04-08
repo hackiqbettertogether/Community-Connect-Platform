@@ -1,8 +1,9 @@
 .login-page {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-image: linear-gradient(to bottom, rgba(51,6,61,0.5), rgba(239,93,3,0.5)), url("../../../assets/background2.jpeg");
+  background-image: url("../../../assets/background2.jpeg");
   height: 100%;
 }
 
@@ -18,10 +19,10 @@
 mat-card {
   min-width: 400px;
   padding: 2em;
-  margin: 2em auto 10em;
+  // margin: 2em auto 10em;
   text-align: center;
-  background: #a1869b70;
-  position:absolute;
+  background: rgb(255 255 255 / 60%);
+  // position:absolute;
 }
 
 mat-form-field {

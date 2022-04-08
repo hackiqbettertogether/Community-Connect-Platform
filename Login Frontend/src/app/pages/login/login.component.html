@@ -1,11 +1,10 @@
 <div class="login-page">
-  <div>
-    <mat-card style="margin-top:-195px;margin-left: -16.1%;">
-      <div class="title">Better Together</div>
-      <div class="subtitle">Connecting All...</div>
-    </mat-card>
-  </div>
-  <mat-card  *ngIf="showLogin" class="login-card" style="margin-top: 20%;">
+  <mat-card>
+    <div class="title">Better Together</div>
+    <div class="subtitle">Connecting All...</div>
+  </mat-card>
+  <br />
+  <mat-card  *ngIf="showLogin" class="login-card">
     <mat-card-content>
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <br />
@@ -39,14 +38,14 @@
                 [disabled]="isLoading"
         >
           <div>
-            Access Community Connect
+            Login
           </div>
         </button>
         <button
                 (click)="signUp()"
                 mat-raised-button
                 color="primary"
-                style="margin-top: 1em;margin-left: 10px; background-color: rgb(255, 200, 0); width: 200px;">Skip to Signup
+                style="margin-top: 1em;margin-left: 10px; background-color: rgb(255, 200, 0);">Signup
         </button>
       </form>
     </mat-card-content>
