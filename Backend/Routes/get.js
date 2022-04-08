@@ -11,6 +11,7 @@ const validation = require("./../validation");
 const bcrypt = require("bcryptjs");
 const { urlify } = require("./../utils");
 const upload = require('./../middleware/file-uploads');
+const fetch = require('sync-fetch');
 
 router.get("/server/status", function (req, res) {
     res.status(200).send("Get Server OK");
@@ -82,6 +83,7 @@ router.get("/leaderboard", async (req, res) => {
       })
       .populate('conversation_visibility_id')
       .populate("user_id", '_id profile_pic user_handle');
+
   const createLeaderBoard = (list, keyGetter) => {
     const map = {};
     list.forEach((item) => {
@@ -98,14 +100,34 @@ router.get("/leaderboard", async (req, res) => {
       if (item.post_type === 'post') {
         score += (item.like_count*3);
         score += (item.repost_count*5);
+        try {
+          const config = {
+              method: 'POST',
+              headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({"comment":item.body})
+          }
+          const response = fetch("http://localhost:5001/sentiment-score", config);
+          const json = response.json();
+          score += json.score;
+      } catch (error) {
+          console.log("errorrrrrrr");
       }
-      if (item.post_type === 'repost' || item.post_type === 'quote') {
-        score -= 5;
-      }
+    }
+
+
+      // if (item.post_type === 'repost' || item.post_type === 'quote') {
+      //   score -= 5;
+      // }
       map[key].score = score;
     });
     return map;
   }
+
+  console.debug("Hiiii");
+  console.debug(entireFeeds);
   let leaderBoardMap = Object.values(createLeaderBoard(entireFeeds, feed => feed.user_id._id));
   res.status(200).send(leaderBoardMap);
 });
